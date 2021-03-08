@@ -49,7 +49,7 @@ import java.util.Random;
 //Задания 1.3, 1.4.
 public class HomeWork1 {
 
-    private static class Box {
+        public static class Box {
         private int weight = 0;
 
         public Box(int weight) {
