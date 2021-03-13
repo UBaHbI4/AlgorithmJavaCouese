@@ -66,7 +66,7 @@ public class HomeWork1 {
 
         @Override
         public String toString() {
-            return "" + weight;
+            return "[" + this.getClass().getSimpleName() + "].weight = " + weight + ";";
         }
 
         public boolean equals(Box otherBox) {

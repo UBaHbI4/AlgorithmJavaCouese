@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0044acb2-c1eb-47a1-9348-ca7e4e6a3b64" name="Default Changelist" comment="" />
+    <list default="true" id="0044acb2-c1eb-47a1-9348-ca7e4e6a3b64" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../src/main/java/softing/UBaH4ukDev/HomeWorks/HomeWork4/MyStack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/softing/UBaH4ukDev/HomeWorks/HomeWork3/HomeWork3.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/main/java/softing/UBaH4ukDev/HomeWorks/HomeWork3/HomeWork3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/softing/UBaH4ukDev/HomeWorks/HomeWork4/HomeWork4.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/main/java/softing/UBaH4ukDev/HomeWorks/HomeWork4/HomeWork4.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
