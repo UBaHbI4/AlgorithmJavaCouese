@@ -311,7 +311,7 @@ public class HomeWork3 {
             return "[" + item + "]";
         }
     }
-    static class LinkedList<T> implements Iterator<T> {
+    public static class LinkedList<T> implements Iterator<T> {
         private Link<T> first;
         private boolean iterStart = false;
 
@@ -358,7 +358,7 @@ public class HomeWork3 {
                 if (out.equals("")){
                     out += current.getItem();
                 } else {
-                    out += ", " + current.getItem();
+                    out += " " + current.getItem();
                 }
                 current = current.getPrevItem();
             }
