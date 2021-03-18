@@ -209,7 +209,7 @@ public class HomeWork2 {
     }
 
     //Метод двоичного поиска
-    private static int binarySearch(int targetArray[], int targetValue) {
+    public static int binarySearch(int targetArray[], int targetValue) {
        int startIndex = 0;
        int endIndex = targetArray.length - 1;
        while (startIndex <= endIndex) {
