@@ -40,24 +40,21 @@ public class HomeWork2 {
         Выполните сортировку с помощью метода sort().
         Оцените сортировку с помощью базового класса System.nanoTime().
         */
-
         int array[] = new int[400];
         Random rnd = new Random();
         for(int i = 0; i < array.length; i++) {
             array[i] = rnd.nextInt(200);
         }
-
+        System.out.println();
+        System.out.println("\tИсходный массив: " + Arrays.toString(array));
         task3(Arrays.copyOf(array, array.length));
-
         /*
         Задание 2.4
         На основе существующего массива данных из задания 2.3 реализуйте алгоритм сортировки пузырьком.
         Оцените сортировку с помощью базового класса System.nanoTime().
         Сравните время выполнения алгоритмы сортировки методом sort() из задания 2.1 и сортировку пузырьком.
         */
-
         task4(Arrays.copyOf(array, array.length));
-
         /*
         Задание 2.5
         На основе массива данных из задания 2.3 реализуйте алгоритм сортировки методом выбора.
@@ -65,7 +62,6 @@ public class HomeWork2 {
         Сравните с временем выполнения алгоритмов сортировки из прошлых заданий 2.3 и 2.4.
         */
         task5(Arrays.copyOf(array, array.length));
-
         /*
         Задание 2.6
         На основе массива данных из задания 2.3 реализуйте алгоритм сортировки методом вставки.
@@ -75,74 +71,88 @@ public class HomeWork2 {
         task6(Arrays.copyOf(array, array.length));
 
         System.out.println("\t\tИтоговые результаты:");
-        System.out.printf("\t\tСортировка методом \r\n\t\tSort: %d ms\r\n\t\tпузырька: %d ms\r\n\t\tвыбора: %d ms\r\n\t\tвставки: %d ms", timeSort, timeBubble, timeSelect, timeInsert);
+        System.out.printf("\t\tСортировка методом \r\n\t\tSort: %d ns\r\n\t\tпузырька: %d ns\r\n\t\tвыбора: %d ns\r\n\t\tвставки: %d ns", timeSort, timeBubble, timeSelect, timeInsert);
 
     }
 
     private static void task6(int[] array) {
         System.out.println("Задание 2.6");
         System.out.println("\tСорировка методом вставки");
+        long lStartTime = System.nanoTime();
+        array = sortInsert(array);
+        timeInsert =  (System.nanoTime() - lStartTime);
+        System.out.println("\tПродолжительность операции " + timeInsert + " ns");
+        System.out.println("\tarray: " + Arrays.toString(array));
+    }
+    public static int[] sortInsert(int[] targetArray) {
         int tempValue = 0;
         int in = 0;
-        long lStartTime = System.nanoTime();
-        for (int i = 0; i < array.length; i++) {
-            tempValue = array[i];
+
+        for (int i = 0; i < targetArray.length; i++) {
+            tempValue = targetArray[i];
             in = i;
-            while (in > 0 && array[in - 1] >= tempValue) {
-                array[in] = array[in - 1];
+            while (in > 0 && targetArray[in - 1] >= tempValue) {
+                targetArray[in] = targetArray[in - 1];
                 --in;
             }
-            array[in] = tempValue;
+            targetArray[in] = tempValue;
         }
-        timeInsert =  (System.nanoTime() - lStartTime) / 1000000;
-        System.out.println("\tПродолжительность операции " + timeSelect + " ms");
-        System.out.println("\tarray: " + Arrays.toString(array));
+        return targetArray;
     }
 
     private static void task5(int[] array) {
         System.out.println("Задание 2.5");
         System.out.println("\tСорировка методом выбора");
-        int tempValue = 0;
-
         long lStartTime = System.nanoTime();
-        for (int i = 0; i < array.length - 1; i++) {
+        array = sortSelect(array);
+        timeSelect =  (System.nanoTime() - lStartTime);
+        System.out.println("\tПродолжительность операции " + timeSelect + " ns");
+        System.out.println("\tarray: " + Arrays.toString(array));
+    }
+
+    public static int[] sortSelect(int[] targetArray) {
+        int tempValue = 0;
+        for (int i = 0; i < targetArray.length - 1; i++) {
             int min = i;
-            for (int j = i + 1; j < array.length; j++) {
-                if (array[j] < array[min]) {
+            for (int j = i + 1; j < targetArray.length; j++) {
+                if (targetArray[j] < targetArray[min]) {
                     min = j;
                 }
             }
-            tempValue = array[i];
-            array[i] = array[min];
-            array[min] = tempValue;
+            tempValue = targetArray[i];
+            targetArray[i] = targetArray[min];
+            targetArray[min] = tempValue;
 
         }
-        timeSelect =  (System.nanoTime() - lStartTime) / 1000000;
-        System.out.println("\tПродолжительность операции " + timeSelect + " ms");
-        System.out.println("\tarray: " + Arrays.toString(array));
+        return targetArray;
     }
 
     private static void task4(int[] array) {
         System.out.println("Задание 2.4");
         System.out.println("\tСорировка пузырьком");
+        long lStartTime = System.nanoTime();
+        array = sortBubble(array);
+        timeBubble =  (System.nanoTime() - lStartTime);
+        System.out.println("\tПродолжительность операции " + timeBubble + " ns");
+        System.out.println("\tarray: " + Arrays.toString(array));
+    }
+
+    public static int[] sortBubble(int[] targetArray) {
         int tempValue = 0;
         boolean sorted = false;
-        long lStartTime = System.nanoTime();
         while (!sorted) {
             sorted = true;
-            for (int i = 0; i < array.length - 1; i++) {
-                if (array[i] > array[i + 1]) {
+            for (int i = 0; i < targetArray.length - 1; i++) {
+                if (targetArray[i] > targetArray[i + 1]) {
                     sorted = false;
-                    tempValue = array[i];
-                    array[i] = array[i + 1];
-                    array[i + 1] = tempValue;
+                    tempValue = targetArray[i];
+                    targetArray[i] = targetArray[i + 1];
+                    targetArray[i + 1] = tempValue;
                 }
 
             }
         }
-        timeBubble =  (System.nanoTime() - lStartTime) / 1000000;
-        System.out.println("\tПродолжительность операции " + timeBubble + " ms");
-        System.out.println("\tarray: " + Arrays.toString(array));
+        return targetArray;
     }
 
 
@@ -152,8 +162,8 @@ public class HomeWork2 {
         long lStartTime = System.nanoTime();
         System.out.println("\tСортировка массива методом Sort");
         Arrays.sort(array);
-        timeSort = (System.nanoTime() - lStartTime) / 1000000;
-        System.out.println("\tПродолжительность операции " + timeSort + " ms");
+        timeSort = (System.nanoTime() - lStartTime);
+        System.out.println("\tПродолжительность операции " + timeSort + " ns");
         System.out.println("\tarray: " + Arrays.toString(array));
     }
 
@@ -168,7 +178,7 @@ public class HomeWork2 {
         for(int i = 0; i < array.length; i++) {
             array[i] = rnd.nextInt(size);
         }
-        System.out.println("\tПродолжительность операции " + (System.nanoTime() - lStartTime) / 1000000 + " ms");
+        System.out.println("\tПродолжительность операции " + (System.nanoTime() - lStartTime) + " ns");
         //Выводим исходный массив
         System.out.println("\tarray: " + Arrays.toString(array));
         System.out.println();
@@ -193,7 +203,7 @@ public class HomeWork2 {
         } else {
             System.out.println("\tЗначение не найдено");
         }
-        System.out.println("\tПродолжительность операции " + (System.nanoTime() - lStartTime) / 1000000 + " ms");
+        System.out.println("\tПродолжительность операции " + (System.nanoTime() - lStartTime) + " ns");
         System.out.println();
 
         //Двоичный поиск:
@@ -205,11 +215,11 @@ public class HomeWork2 {
         } else {
             System.out.println("\tЗначение не найдено");
         }
-        System.out.println("\tПродолжительность операции " + (System.nanoTime() - lStartTime) / 1000000 + " ms");
+        System.out.println("\tПродолжительность операции " + (System.nanoTime() - lStartTime)+ " ns");
     }
 
     //Метод двоичного поиска
-    private static int binarySearch(int targetArray[], int targetValue) {
+    public static int binarySearch(int targetArray[], int targetValue) {
        int startIndex = 0;
        int endIndex = targetArray.length - 1;
        while (startIndex <= endIndex) {
@@ -235,7 +245,7 @@ public class HomeWork2 {
         for(int i = 0; i < array.length; i++) {
             array[i] = rnd.nextInt(size);
         }
-        System.out.println("\tПродолжительность операции " + (System.nanoTime() - lStartTime) / 1000000 + " ms");
+        System.out.println("\tПродолжительность операции " + (System.nanoTime() - lStartTime) + " ns");
         //Выводим исходный массив
         System.out.println("\tarray: " + Arrays.toString(array));
         System.out.println();
@@ -249,7 +259,7 @@ public class HomeWork2 {
                 array[i]++;
             }
         }
-        System.out.println("\tПродолжительность операции " + (System.nanoTime() - lStartTime) / 1000000 + " ms");
+        System.out.println("\tПродолжительность операции " + (System.nanoTime() - lStartTime) + " ns");
         //Выводим результат
         System.out.println("\tarray: " + Arrays.toString(array));
         System.out.println();
@@ -258,7 +268,7 @@ public class HomeWork2 {
         System.out.println("\tСортировка по возрастанию:");
         lStartTime = System.nanoTime();
         Arrays.sort(array);
-        System.out.println("\tПродолжительность операции " + (System.nanoTime() - lStartTime) / 1000000 + " ms");
+        System.out.println("\tПродолжительность операции " + (System.nanoTime() - lStartTime) + " ns");
         //Выводим результат
         System.out.println("\tarray: " + Arrays.toString(array));
         System.out.println();
@@ -266,7 +276,7 @@ public class HomeWork2 {
         System.out.println("\tСортировка по убыванию:");
         lStartTime = System.nanoTime();
         Arrays.sort(array, Collections.reverseOrder());
-        System.out.println("\tПродолжительность операции " + (System.nanoTime() - lStartTime) / 1000000 + " ms");
+        System.out.println("\tПродолжительность операции " + (System.nanoTime() - lStartTime) + " ns");
         //Выводим результат
         System.out.println("\tarray: " + Arrays.toString(array));
         System.out.println();
@@ -274,7 +284,7 @@ public class HomeWork2 {
         System.out.println("\tЗаполнение массива пятерками");
         lStartTime = System.nanoTime();
         Arrays.fill(array,5);
-        System.out.println("\tПродолжительность операции " + (System.nanoTime() - lStartTime) / 1000000 + " ms");
+        System.out.println("\tПродолжительность операции " + (System.nanoTime() - lStartTime) + " ns");
         //Выводим результат
         System.out.println("\tarray: " + Arrays.toString(array));
     }
